@@ -24,14 +24,15 @@ namespace Pokedex_2022_CSharp
 
         private void Izquierda_Click(object sender, EventArgs e)
         {
-            idActual--;
-            if (idActual > 0) //ya no da error en el tope izq
+           if (idActual <= 1) //ya no da error en el tope izq y avanza al ultimo
             {
-                misPokemons = miConexion.getPokemonPorId(idActual);
-                nombrePokemon.Text = misPokemons.Rows[0]["nombre"].ToString();
-                pictureBox1.Image = convierteBlobAImagen((byte[])misPokemons.Rows[0]["imagen"]);
-                inicioDesc.Text = misPokemons.Rows[0]["descripcion"].ToString();
+                idActual = 152;
             }
+            idActual--;
+            misPokemons = miConexion.getPokemonPorId(idActual);
+            nombrePokemon.Text = misPokemons.Rows[0]["nombre"].ToString();
+            pictureBox1.Image = convierteBlobAImagen((byte[])misPokemons.Rows[0]["imagen"]);
+            inicioDesc.Text = misPokemons.Rows[0]["descripcion"].ToString();
         }
 
         private void nombrePokemon_Click(object sender, EventArgs e)
@@ -47,15 +48,17 @@ namespace Pokedex_2022_CSharp
 
         private void Derecha_Click(object sender, EventArgs e)
         {
-            idActual++;
-            if(idActual < 152)//ya no da error en el tope der
-            {
-                misPokemons = miConexion.getPokemonPorId(idActual);
-                nombrePokemon.Text = misPokemons.Rows[0]["nombre"].ToString();
-                pictureBox1.Image = convierteBlobAImagen((byte[])misPokemons.Rows[0]["imagen"]);
-                inicioDesc.Text = misPokemons.Rows[0]["descripcion"].ToString();
-            }
             
+            if(idActual >= 151)//ya no da error en el tope der y avanza al primero
+            {
+                idActual = 0;
+            }
+            idActual++;
+            misPokemons = miConexion.getPokemonPorId(idActual);
+            nombrePokemon.Text = misPokemons.Rows[0]["nombre"].ToString();
+            pictureBox1.Image = convierteBlobAImagen((byte[])misPokemons.Rows[0]["imagen"]);
+            inicioDesc.Text = misPokemons.Rows[0]["descripcion"].ToString();
+
         }
 
         private void botonInfo_Click(object sender, EventArgs e)
@@ -73,6 +76,7 @@ namespace Pokedex_2022_CSharp
             v.sumaHabitat(misPokemons.Rows[0]["habitat"].ToString());
             v.sumaTipoA(misPokemons.Rows[0]["tipo1"].ToString());
             v.sumaTipoB(misPokemons.Rows[0]["tipo2"].ToString());
+            v.sumaImagen(convierteBlobAImagen((byte[])misPokemons.Rows[0]["imagen"]));
             v.Show();
         }
 

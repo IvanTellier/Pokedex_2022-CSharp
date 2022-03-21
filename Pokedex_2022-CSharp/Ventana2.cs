@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Pokedex_2022_CSharp
 {
@@ -32,6 +33,10 @@ namespace Pokedex_2022_CSharp
         {
             movimientoD.Text = movimiento4;
         }
+        public void sumaHabitat(String habitat) 
+        {
+            habitatA.Text = habitat;
+        }
         public void sumaTipoA(String tipo1) 
         {
             tipoA.Text = tipo1;
@@ -39,6 +44,10 @@ namespace Pokedex_2022_CSharp
         public void sumaTipoB(String tipo2)
         {
             tipoB.Text = tipo2;
+        }
+        public void sumaImagen(Image imagen)
+        {
+            pictureBox1.Image = imagen;
         }
         public Ventana2()
         {
@@ -51,6 +60,11 @@ namespace Pokedex_2022_CSharp
         }
 
         private void cajaDescripcion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tipoB_Click(object sender, EventArgs e)
         {
 
         }
